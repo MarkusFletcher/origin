@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+	<title></title>
+	<meta name="description" content="">
+
+	<!-- <link rel="shortcut icon" href="" type="image/x-icon"> -->
+	<!-- <link rel="icon" href="" type="image/x-icon"> -->
+
+
+	<!-- PRELOAD FONTS -->
+	<link 
+		rel="preload" 
+		as="font" 
+		href="fonts/font.woff2"
+		type="font/woff2" 
+		crossorigin="anonymous"
+	>
+
+	<style>
+
+	</style>
+
+	<link 
+		rel="preload" 
+		href="css/main.css" 
+		as="style" 
+		onload="this.onload=null;this.rel='stylesheet'"
+	>
+	<noscript>
+		<link rel="stylesheet" href="css/main.css">
+	</noscript>
+	<script>!function (n) { "use strict"; n.loadCSS || (n.loadCSS = function () { }); var o = loadCSS.relpreload = {}; if (o.support = function () { var e; try { e = n.document.createElement("link").relList.supports("preload") } catch (t) { e = !1 } return function () { return e } }(), o.bindMediaToggle = function (t) { var e = t.media || "all"; function a() { t.addEventListener ? t.removeEventListener("load", a) : t.attachEvent && t.detachEvent("onload", a), t.setAttribute("onload", null), t.media = e } t.addEventListener ? t.addEventListener("load", a) : t.attachEvent && t.attachEvent("onload", a), setTimeout(function () { t.rel = "stylesheet", t.media = "only x" }), setTimeout(a, 3e3) }, o.poly = function () { if (!o.support()) for (var t = n.document.getElementsByTagName("link"), e = 0; e < t.length; e++) { var a = t[e]; "preload" !== a.rel || "style" !== a.getAttribute("as") || a.getAttribute("data-loadcss") || (a.setAttribute("data-loadcss", !0), o.bindMediaToggle(a)) } }, !o.support()) { o.poly(); var t = n.setInterval(o.poly, 500); n.addEventListener ? n.addEventListener("load", function () { o.poly(), n.clearInterval(t) }) : n.attachEvent && n.attachEvent("onload", function () { o.poly(), n.clearInterval(t) }) } "undefined" != typeof exports ? exports.loadCSS = loadCSS : n.loadCSS = loadCSS }("undefined" != typeof global ? global : this);</script>
+
+</head>
+
+<body>
+	<div class="overflow">
+		<header class="header">
+			<div class="header__container container">
+				<div class="header__logo logo">
+					<a class="logo__link" href="#">
+						Markus Fletcher
+					</a>
+				</div>
+				<nav class="header__nav nav">
+					<ul class="nav__list">
+						<li class="nav__item">
+							<a href="" class="nav__link">Projects</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</header>
+	</div>
+
+	<!-- <img data-src="img/hero.jpg" src="img/low-res/hero.jpg" class="lazyload header__logo" alt=""> -->
+
+
+	<!-- <picture>
+			  <source media="(max-width: 767px)" 
+			  	src="img/low-res/hero.jpg"
+			  	data-srcset="img/mob-pitch.svg">
+
+			  <img class="lazyload" 
+			    src="img/low-res/hero.jpg"
+				data-src="img/hero.svg" 
+			  	alt="">
+			</picture>  -->
+
+
+
+	<!-- LAZYLOAD -->
+
+	<script>
+		
+	</script>
+
+	<script 
+		async 
+		type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.2.0/lazysizes.min.js">
+	</script>
+
+	<script 
+		defer 
+		src="https://cdn.plyr.io/3.7.2/plyr.js">
+	</script>
+
+	<script 
+		defer 
+		src="js/common.js">
+	</script>
+
+</body>
+
+</html>

@@ -1,0 +1,312 @@
+@font-face {
+	font-family: 'Jura';
+	src: url('../fonts/Jura-Light.woff2') format('woff2'),
+		url('../fonts/Jura-Light.woff') format('woff'),
+		url('../fonts/Jura-Light.ttf') format('truetype');
+	font-weight: 300;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Jura';
+	src: url('../fonts/Jura-Regular.woff2') format('woff2'),
+		url('../fonts/Jura-Regular.woff') format('woff'),
+		url('../fonts/Jura-Regular.ttf') format('truetype');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Jura';
+	src: url('../fonts/Jura-Medium.woff2') format('woff2'),
+		url('../fonts/Jura-Medium.woff') format('woff'),
+		url('../fonts/Jura-Medium.ttf') format('truetype');
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Jura';
+	src: url('../fonts/Jura-SemiBold.woff2') format('woff2'),
+		url('../fonts/Jura-SemiBold.woff') format('woff'),
+		url('../fonts/Jura-SemiBold.ttf') format('truetype');
+	font-weight: 600;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Jura';
+	src: url('../fonts/Jura-Bold.woff2') format('woff2'),
+		url('../fonts/Jura-Bold.woff') format('woff'),
+		url('../fonts/Jura-Bold.ttf') format('truetype');
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+* {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+
+@function px($value) {
+	$remValue: calc((#{$value} * 100vw / 1920));
+	@return $remValue;
+}
+
+html {
+	font-size: px(1);
+}
+
+body {
+	min-width: 320px;
+	position: relative;
+	line-height: 1.2;
+	overflow-x: hidden;
+	font-family: 'Jura';
+}
+
+input,
+button,
+select,
+textarea {
+	-webkit-appearance: none;
+
+	&:focus {
+		outline: none;
+	}
+}
+
+a {
+	font-size: 16rem;
+	text-decoration: none;
+}
+
+li {
+	list-style: none;
+}
+
+.overflow {
+	position: relative;
+	width: 100%;
+	display: block;
+	overflow-x: hidden;
+}
+
+.fixed {
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+
+.flex {
+	display: flex;
+
+	&.jcsb {
+		justify-content: space-between;
+	}
+
+	&.jcsa {
+		justify-content: space-around;
+	}
+
+	&.jcse {
+		justify-content: space-evenly;
+	}
+
+	&.jcc {
+		justify-content: center;
+	}
+
+	&.jcfe {
+		justify-content: flex-end;
+	}
+
+	&.aic {
+		align-items: center;
+	}
+
+	&.aife {
+		align-items: flex-end;
+	}
+
+	&.aifs {
+		align-items: flex-start;
+	}
+
+	& .half {
+		width: 50%;
+	}
+
+	&.col {
+		flex-direction: column;
+	}
+
+	&.wrap {
+		flex-wrap: wrap;
+	}
+}
+
+img,
+picture {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+.rel {
+	position: relative;
+}
+
+.abs-center {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate3d(-50%, -50%, 0px);
+}
+
+.abs-full {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.center {
+	margin: 0 auto;
+}
+
+section {
+	padding-left: 93rem;
+	padding-right: 93rem;
+
+	h2 {
+		margin-bottom: 100rem;
+	}
+}
+
+.text {
+	&-center {
+		text-align: center;
+	}
+}
+
+.button {
+	display: block;
+	color: #000;
+	padding: 4px 12px;
+	background: #fff;
+	font-size: 25rem;
+	letter-spacing: 1px;
+	text-align: center;
+	line-height: 1.2;
+	transition: .3s;
+	border: 1px #fff solid;
+	border-radius: 8px;
+	cursor: pointer;
+
+	&:focus {
+		outline: none;
+	}
+
+	&:hover {
+		background: #000;
+		color: #fff;
+		transition: .3s;
+	}
+
+	&.button_outline {
+		font-weight: 300;
+		color: #fff;
+		background-color: transparent;
+	}
+
+	&.button_outline:hover {
+		color: #000;
+		background-color: #fff;
+	}
+}
+
+.fixed-bar {
+	position: fixed;
+	top: 0;
+
+	&.left {
+		left: 0;
+	}
+
+	&.right {
+		right: 0;
+	}
+}
+
+h1 {
+	font-size: 60rem;
+	font-weight: 400;
+
+	span {
+		font-weight: 100;
+	}
+}
+.bg-shadow {
+	position: relative;
+	&::before {
+		z-index: 1;
+		content: '';
+		position: absolute;
+		width: 150%;
+		height: 150%;
+		left: -25%;
+		top: -25%;
+		background: radial-gradient(ellipse at center, rgba(0,0,0,.7) 0%,rgba(0,0,0,.4) 40%, rgba(0,0,0,0) 70%);
+	}
+	>* {
+		position: relative;
+		z-index: 2;
+	}
+}
+
+h2 {
+	font-size: 70rem;
+	font-weight: 500;
+	line-height: 1.03;
+	letter-spacing: -0.04em;
+
+	&.regular {
+		font-weight: 400;
+	}
+
+	span {
+		font-weight: 100;
+	}
+}
+
+h3 {
+	font-size: 50rem;
+	font-weight: 500;
+	span {
+		font-weight: 100;
+	}
+}
+
+h4 {
+	font-size: 35rem;
+	font-weight: 300;
+}
+
+h5 {}
+
+h6 {}
+
+p {
+	font-family: 'PPSupplySans';
+	font-weight: 200;
+	font-size: 25rem;
+	letter-spacing: 0;
+}
