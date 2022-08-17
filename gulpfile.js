@@ -43,12 +43,12 @@ gulp.task('styles', function() {
 });
 
 // JS
-gulp.task('scripts', function() {
+gulp.task('script', function() {
 	return gulp.src([
-		'app/js/common.js', // Always at the end
+		'app/js/_script.js', // Always at the end
 		])
-	.pipe(concat('scripts.js'))
-	.pipe(terser()) // Mifify js (opt.)
+	.pipe(concat('script.js'))
+	// .pipe(terser()) // Mifify js (opt.)
 
 	.pipe(gulp.dest('app/js'))
 	.pipe(browserSync.reload({ stream: true }))
@@ -122,12 +122,12 @@ gulp.task('rsync', function() {
 
 	gulp.task('watch', function() {
 		gulp.watch('app/'+syntax+'/**/*.'+syntax+'', gulp.parallel('styles'));
-		gulp.watch(['libs/**/*.js', 'app/js/common.js'], gulp.parallel('scripts'));
+		gulp.watch(['libs/**/*.js', 'app/js/_script.js'], gulp.parallel('script'));
 		gulp.watch('app/*.html', gulp.parallel('code'));
 		// gmWatch && gulp.watch('app/img/_src/**/*', gulp.parallel('img')); // GraphicsMagick watching image sources if allowed.
 	});
 	// gmWatch ? gulp.task('default', gulp.parallel('img', 'styles', 'scripts', 'browser-sync', 'watch')) 
 	// 				: 
-	gulp.task('default', gulp.parallel('styles', 'scripts', 'browser-sync', 'watch'));
+	gulp.task('default', gulp.parallel('styles', 'script', 'browser-sync', 'watch'));
 
 // };
