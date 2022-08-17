@@ -52,6 +52,7 @@
 	box-sizing: border-box;
 	padding: 0;
 	margin: 0;
+	transition: background-color .3s ease;
 }
 
 @function px($value) {
@@ -69,6 +70,7 @@ body {
 	line-height: 1.2;
 	overflow-x: hidden;
 	font-family: 'Jura';
+	background-color: var(--color-body-bg);
 }
 
 input,

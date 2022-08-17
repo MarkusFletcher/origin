@@ -1,0 +1,44 @@
+.projects {
+    $height: 235px;
+    
+    &__container {
+        padding: 100px 0;
+    }
+
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 100px;
+    }
+
+    &__item {
+        height: $height;
+        background-color: #000;
+        overflow: hidden;
+        cursor: pointer;
+    }
+
+    &__img {
+        filter: brightness(.7);
+        transition: filter .3s ease;
+    }
+
+    &__item:hover &__img {
+        filter: brightness(1);
+        animation-duration: 8s;
+        animation-name: scroll-on-hover;
+        animation-iteration-count: infinite;
+    }
+
+    @keyframes scroll-on-hover {
+        5% {
+            transform: translateY(0);
+        }
+        40%, 60% {
+            transform: translateY(-100%) translateY($height);
+        }
+        95% {
+            transform: translateY(0);
+        }
+    }
+}
