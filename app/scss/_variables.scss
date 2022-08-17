@@ -1,0 +1,15 @@
+// # Colors #
+$color-dark: #1E1E1E;
+$color-gray-blue: #404C58;
+$color-gray-dark: #2F2F2F;
+$color-white: #fff;
+
+:root[data-theme="light"] {
+    --color-header-bg: #{$color-gray-blue};
+    --color-body-bg: #{$color-white};
+}
+
+:root[data-theme="dark"] {
+    --color-header-bg: #{$color-dark};
+    --color-body-bg: #{$color-gray-dark};
+}
