@@ -1,7 +1,7 @@
 export default class ThemeHandler {
-    constructor(themesList = {light: 'light', dark: 'dark'}, themeDefault = 'light') {
+    constructor(themesList = {light: 'light', dark: 'dark'}) {
         this.themesList = themesList
-        this.themeDefault = this.getOnLocalStorage()
+        this.themeDefault = this.getFromLocalStorage()
         this.html = document.querySelector('html')
     }
 
@@ -10,9 +10,12 @@ export default class ThemeHandler {
         this.saveOnLocalStorage(id)
     }
 
-    setDefaultTheme() {
+    setDefaultTheme(cb) {
         document.addEventListener("DOMContentLoaded", () => {
             this.html.setAttribute('data-theme', this.themeDefault)
+            if(typeof cb == 'function'){
+                cb()
+            }
         });
     }
 
@@ -20,7 +23,7 @@ export default class ThemeHandler {
         localStorage.setItem('site-theme', id)
     }
 
-    getOnLocalStorage() {
+    getFromLocalStorage() {
         return localStorage.getItem('site-theme')
     }
 

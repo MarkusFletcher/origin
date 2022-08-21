@@ -6,7 +6,12 @@ let themeConstrol = document.querySelector('.darkmode-control')
 let themeToggler = themeConstrol.querySelector('.darkmode-control__toggler')
 let themeHandler = new ThemeHandler()
 
-themeHandler.setDefaultTheme()
+themeHandler.setDefaultTheme(() => {
+    if (ThemeHandler.getCurrentTheme() == 'dark') {
+        themeToggler.classList.add('active')
+    }
+})
+
 
 themeConstrol.addEventListener('click', () => {
     themeHandler.changeTheme(ThemeHandler.getCurrentTheme() == 'dark' ? 'light' : 'dark')
