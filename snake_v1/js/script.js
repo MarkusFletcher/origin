@@ -36,10 +36,11 @@ function gameLoop() {
             return
         }
         config.step = 0
-
+        
         context.clearRect( 0, 0, gameCanvas.width, gameCanvas.height )
         drawSnake()
         drawBerry()
+        collisionBorder()
     }
 }
 
@@ -100,8 +101,33 @@ function getRandomInt(min, max) {
     return rand
 }
 
-function collision() {
+function collisionBorder() {
+    if (
+        snake.x < 0 ||
+        snake.y < 0 || 
+        snake.x > 480 ||
+        snake.y > 480
+        ) {
+            restartGame()
+        }
+}
 
+function collisionSelf() {
+    snake.body.forEach(el => {
+        if (el.x) {
+
+        }
+    })
+}
+
+function restartGame() {
+    score = 0
+    gamePause = true
+
+    snake.x = 160
+    snake.y = 160
+    snake.body = []
+    snake.length = 3
 }
 
 document.addEventListener('keydown', e => {
@@ -134,3 +160,5 @@ document.addEventListener('keydown', e => {
 
 
 requestAnimationFrame(gameLoop)
+
+// Paws 349
