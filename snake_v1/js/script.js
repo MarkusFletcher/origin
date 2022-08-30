@@ -121,6 +121,7 @@ function collisionSelf() {
 }
 
 function restartGame() {
+    drawScore()
     score = 0
     gamePause = true
 
