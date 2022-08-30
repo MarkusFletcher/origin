@@ -1,5 +1,6 @@
 const $scoreCounter = document.querySelector('.game__scope-count')
 let score = 0
+let gamePause = true
 
 const config = {
     step: 0,
@@ -30,15 +31,16 @@ drawScore()
 
 function gameLoop() {
     requestAnimationFrame(gameLoop)
+    if (!gamePause) {
+        if (++config.step < config.maxStep) {
+            return
+        }
+        config.step = 0
 
-    if (++config.step < config.maxStep) {
-        return
+        context.clearRect( 0, 0, gameCanvas.width, gameCanvas.height )
+        drawSnake()
+        drawBerry()
     }
-    config.step = 0
-
-    context.clearRect( 0, 0, gameCanvas.width, gameCanvas.height )
-    drawSnake()
-    drawBerry()
 }
 
 function drawSnake() {
@@ -98,6 +100,10 @@ function getRandomInt(min, max) {
     return rand
 }
 
+function collision() {
+
+}
+
 document.addEventListener('keydown', e => {
     switch(e.code) {
         case 'KeyW':
@@ -119,6 +125,9 @@ document.addEventListener('keydown', e => {
             if (snake.speedX == config.sizeCell) break
             snake.speedX = -config.sizeCell
             snake.speedY = 0
+            break
+        case 'Space':
+            gamePause = !gamePause
         break
     }
 })
