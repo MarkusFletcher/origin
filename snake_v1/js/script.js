@@ -121,14 +121,15 @@ function collisionSelf() {
 }
 
 function restartGame() {
-    drawScore()
     score = 0
     gamePause = true
-
+    
     snake.x = 160
     snake.y = 160
     snake.body = []
     snake.length = 3
+    
+    drawScore()
 }
 
 document.addEventListener('keydown', e => {
