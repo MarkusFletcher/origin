@@ -113,8 +113,8 @@ function collisionBorder() {
     if (
         snake.x < 0 ||
         snake.y < 0 || 
-        snake.x > 480 ||
-        snake.y > 480
+        snake.x > 464 ||
+        snake.y > 464
         ) {
             restartGame()
         }
