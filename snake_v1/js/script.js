@@ -4,7 +4,7 @@ let gamePause = true
 
 const config = {
     step: 0,
-    maxStep: 16 + score,
+    maxStep: 24,
     sizeCell: 16,
     sizeBerry: 4
 }
@@ -66,6 +66,7 @@ function drawSnake() {
     if (snake.x == berry.x && snake.y == berry.y) {
         snake.length++
         incScore()
+        updateSpeed()
         randomPositionBerry()
     }
 
@@ -92,6 +93,13 @@ function incScore() {
 
 function drawScore() {
     $scoreCounter.innerHTML = score
+}
+
+function updateSpeed() {
+    if (config.maxStep >= 12) {
+        config.maxStep = Math.round(16 - score / 10)
+        console.log('speed: ' + config.maxStep)
+    }
 }
 
 function getRandomInt(min, max) {
@@ -124,11 +132,13 @@ function restartGame() {
     score = 0
     gamePause = true
     
+    config.maxStep = 24
+
     snake.x = 160
     snake.y = 160
     snake.body = []
     snake.length = 3
-    
+
     drawScore()
 }
 
