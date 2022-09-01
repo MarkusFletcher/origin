@@ -38,9 +38,10 @@ function gameLoop() {
         config.step = 0
         
         context.clearRect( 0, 0, gameCanvas.width, gameCanvas.height )
+        collisionBorder()
+        collisionSelf()
         drawSnake()
         drawBerry()
-        collisionBorder()
     }
 }
 
@@ -121,9 +122,12 @@ function collisionBorder() {
 }
 
 function collisionSelf() {
-    snake.body.forEach(el => {
-        if (el.x) {
-
+    snake.body.forEach((el, index) => {
+        if (el.x == snake.body[0].x && el.y == snake.body[0].y) {
+            if (index != 0) {
+                console.log('столкновение')
+                restartGame()
+            }
         }
     })
 }
