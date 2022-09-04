@@ -1,17 +1,6 @@
-const $scoreCounter = document.querySelector('.game__score-count')
-const $scoreRecord = document.querySelector('.game__score-record')
-
-let score = 0
-let recordScore = localStorage.getItem('snakeRecordScore') || 0
 let gamePause = true
 
 let now, then, elapsed
-
-const config = {
-    sizeCell: 16,
-    sizeBerry: 4,
-    speed: 200
-}
 
 const snake = {
     x: 160,
@@ -22,20 +11,12 @@ const snake = {
     length: 3
 }
 
-const berry = {
-    x: 0,
-    y: 0
-}
-
-let gameCanvas = document.querySelector('.game__canvas')
-let context = gameCanvas.getContext('2d')
-
 drawScore()
 drawScoreRecord()
 
 randomPositionBerry()
-
 then = Date.now()
+
 function gameLoop() {
     requestAnimationFrame(gameLoop)
 
@@ -84,48 +65,15 @@ function drawSnake() {
     // console.log('berry: ' + berry.x + ' : ' + berry.x)
 }
 
-function drawBerry() {
-    context.beginPath();
-	context.fillStyle = "#A00034";
-	context.arc( berry.x + (config.sizeCell / 2 ), berry.y + (config.sizeCell / 2 ), config.sizeBerry, 0, 2 * Math.PI );
-	context.fill();
-}
 
-function randomPositionBerry() {
-    berry.x = getRandomInt(0, gameCanvas.width / config.sizeCell) * config.sizeCell
-    berry.y = getRandomInt(0, gameCanvas.height / config.sizeCell) * config.sizeCell
-}
 
-function incScore() {
-    score++
-    drawScore()
-}
 
-function drawScore() {
-    $scoreCounter.innerHTML = score
-}
-
-function setScoreRecord() {
-    if (score > recordScore) {
-        recordScore = score
-        localStorage.setItem('snakeRecordScore', recordScore)
-    }
-}
-
-function drawScoreRecord() {
-    $scoreRecord.innerHTML = recordScore
-}
 
 function updateSpeed() {
     
 }
 
-function getRandomInt(min, max) {
-    let rand = Math.floor( Math.random() * ( max - min ) + min )
-    console.log(rand)
-    console.log(min + ' - ' + max)
-    return rand
-}
+
 
 function collisionBorder() {
     if (
