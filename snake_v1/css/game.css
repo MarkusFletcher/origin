@@ -23,7 +23,8 @@
     padding-bottom: 8px;
 }
 
-.game__scope-count {
+.game__score-count,
+.game__score-record {
     color: #fff;
     font-size: 20px;
 }

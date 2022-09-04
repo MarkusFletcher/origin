@@ -1,12 +1,16 @@
-const $scoreCounter = document.querySelector('.game__scope-count')
+const $scoreCounter = document.querySelector('.game__score-count')
+const $scoreRecord = document.querySelector('.game__score-record')
+
 let score = 0
+let recordScore = localStorage.getItem('snakeRecordScore') || 0
 let gamePause = true
 
+let now, then, elapsed
+
 const config = {
-    step: 0,
-    maxStep: 24,
     sizeCell: 16,
-    sizeBerry: 4
+    sizeBerry: 4,
+    speed: 200
 }
 
 const snake = {
@@ -27,19 +31,25 @@ let gameCanvas = document.querySelector('.game__canvas')
 let context = gameCanvas.getContext('2d')
 
 drawScore()
+drawScoreRecord()
 
-
+then = Date.now()
 function gameLoop() {
     requestAnimationFrame(gameLoop)
+
+    now = Date.now()
+    elapsed = now - then
+
     if (!gamePause) {
-        if (++config.step < config.maxStep) {
-            return
-        }
-        config.step = 0
-        
-        context.clearRect( 0, 0, gameCanvas.width, gameCanvas.height )
         collisionBorder()
         collisionSelf()
+
+        console.log(now)
+        console.log(then)
+        if (elapsed < config.speed) return
+        then = now
+        
+        context.clearRect( 0, 0, gameCanvas.width, gameCanvas.height )
         drawSnake()
         drawBerry()
     }
@@ -96,11 +106,19 @@ function drawScore() {
     $scoreCounter.innerHTML = score
 }
 
-function updateSpeed() {
-    if (config.maxStep >= 12) {
-        config.maxStep = Math.round(16 - score / 10)
-        console.log('speed: ' + config.maxStep)
+function setScoreRecord() {
+    if (score > recordScore) {
+        recordScore = score
+        localStorage.setItem('snakeRecordScore', recordScore)
     }
+}
+
+function drawScoreRecord() {
+    $scoreRecord.innerHTML = recordScore
+}
+
+function updateSpeed() {
+    
 }
 
 function getRandomInt(min, max) {
@@ -132,11 +150,24 @@ function collisionSelf() {
     })
 }
 
+function collisionSelf2() {
+    console.log('+++++++++++++++++++++')
+    if (snake.body.find((el) => {
+        console.log(el)
+        console.log({x: snake.x, y: snake.y})
+        console.log('==========')
+        return el == {x: snake.x, y: snake.y}
+        // return el.x == snake.x && y == snake.y
+    })) {
+        restartGame()
+    }
+}
+
 function restartGame() {
+    setScoreRecord()
+    drawScoreRecord()
     score = 0
     gamePause = true
-    
-    config.maxStep = 24
 
     snake.x = 160
     snake.y = 160
