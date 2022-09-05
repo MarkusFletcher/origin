@@ -7,6 +7,8 @@ let gamePause = true
 
 let now, then, elapsed
 
+let $speed = document.querySelector('.game__speed')
+
 const config = {
     sizeCell: 16,
     sizeBerry: 4,
@@ -214,6 +216,10 @@ document.addEventListener('keydown', e => {
             gamePause = !gamePause
         break
     }
+})
+
+document.addEventListener('input', e => {
+    config.speed = Number(e.target.value) || 200
 })
 
 
