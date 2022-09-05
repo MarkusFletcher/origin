@@ -10,7 +10,7 @@ let now, then, elapsed
 const config = {
     sizeCell: 16,
     sizeBerry: 4,
-    speed: 200
+    speed: 200 //200
 }
 
 const snake = {
@@ -19,7 +19,8 @@ const snake = {
     speedX: config.sizeCell,
     speedY: 0,
     body: [],
-    length: 3
+    length: 3,
+    canTurn: true
 }
 
 const berry = {
@@ -36,6 +37,7 @@ drawScoreRecord()
 randomPositionBerry()
 
 then = Date.now()
+
 function gameLoop() {
     requestAnimationFrame(gameLoop)
 
@@ -46,11 +48,11 @@ function gameLoop() {
         if (elapsed < config.speed) return
         then = now
 
-        if (collisionBorder() || collisionSelf()) restartGame()
-        
         context.clearRect( 0, 0, gameCanvas.width, gameCanvas.height )
         drawSnake()
         drawBerry()
+        if (collisionBorder() || collisionSelf()) restartGame()
+        snake.canTurn = true
     }
 }
 
@@ -122,8 +124,6 @@ function updateSpeed() {
 
 function getRandomInt(min, max) {
     let rand = Math.floor( Math.random() * ( max - min ) + min )
-    console.log(rand)
-    console.log(min + ' - ' + max)
     return rand
 }
 
@@ -140,13 +140,20 @@ function collisionBorder() {
 }
 
 function collisionSelf() {
-    snake.body.forEach((el, index) => {
-        if (el.x == snake.body[0].x && el.y == snake.body[0].y) {
-            if (index != 0) {
-                return true
-            }
+    // snake.body.forEach((el, index) => {
+    //     if (el.x == snake.body[0].x && el.y == snake.body[0].y) {
+    //         if (index != 0) {
+    //             return true
+    //         }
+    //     }
+    // })
+    for ( let i = 1; i < snake.length; i++ ) {
+        if ( snake.body[0].x == snake.body[i].x && snake.body[0].y == snake.body[i].y) {
+            console.log('kaboom')
+            return true
         }
-    })
+    }
+
     return false
 }
 
@@ -180,24 +187,28 @@ function restartGame() {
 document.addEventListener('keydown', e => {
     switch(e.code) {
         case 'KeyW':
-            if (snake.speedY == config.sizeCell) break
+            if (snake.speedY == config.sizeCell || !snake.canTurn) break
             snake.speedX = 0
             snake.speedY = -config.sizeCell
+            snake.canTurn = false
             break
         case 'KeyD':
-            if (snake.speedX == -config.sizeCell) break
+            if (snake.speedX == -config.sizeCell || !snake.canTurn) break
             snake.speedX = config.sizeCell
             snake.speedY = 0
+            snake.canTurn = false
             break
         case 'KeyS':
-            if (snake.speedY == -config.sizeCell) break
+            if (snake.speedY == -config.sizeCell || !snake.canTurn) break
             snake.speedX = 0
             snake.speedY = config.sizeCell
+            snake.canTurn = false
             break
         case 'KeyA':
-            if (snake.speedX == config.sizeCell) break
+            if (snake.speedX == config.sizeCell || !snake.canTurn) break
             snake.speedX = -config.sizeCell
             snake.speedY = 0
+            snake.canTurn = false
             break
         case 'Space':
             gamePause = !gamePause
